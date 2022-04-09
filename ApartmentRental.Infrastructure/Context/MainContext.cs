@@ -21,5 +21,17 @@ public class MainContext : DbContext
     {
         optionsBuilder.UseSqlite("DataSource=dbo.ApartmentRental.db");
     }
-    
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Apartment>()
+            .HasMany(x => x.Images)
+            .WithOne(x => x.Apartment)
+            .OnDelete(DeleteBehavior.Cascade);
+        
+        modelBuilder.Entity<Landlord>()
+            .HasMany(x => x.Apartments)
+            .WithOne(x => x.Landlord)
+            .OnDelete(DeleteBehavior.Cascade);
+    }
 }
