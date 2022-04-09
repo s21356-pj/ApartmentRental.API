@@ -1,4 +1,4 @@
-using ApartmentRental.Core.Entities;
+using ApartmentRental.Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace ApartmentRental.Infrastructure.Context;
@@ -12,6 +12,10 @@ public class MainContext : DbContext
     public DbSet<Tenant> Tenant { get; set; }
     public DbSet<Address> Address { get; set; }
 
+    public MainContext()
+    {
+        
+    }
     public MainContext(DbContextOptions options) : base(options)
     {
         
